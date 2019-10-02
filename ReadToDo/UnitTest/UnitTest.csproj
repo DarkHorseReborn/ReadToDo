@@ -12,4 +12,20 @@
     <PackageReference Include="MSTest.TestFramework" Version="1.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ReadToDo\ReadToDo.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestFiles\TodoRoot.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Todo\TodoSub.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\WithoutToDo\WithoutToDo.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

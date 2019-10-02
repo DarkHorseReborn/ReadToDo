@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -8,7 +9,7 @@ namespace ReadToDo
     {
         const string TODO = "TODO";
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             ReadFilePath();
         }
@@ -19,8 +20,9 @@ namespace ReadToDo
             {
                 Console.Write("Enter your directory :");
                 string fileDirectory = Console.ReadLine();
-                GetFiles(fileDirectory);
-                
+                List<string> files = GetFiles(fileDirectory);
+                PrintToDoFiles(files);
+
                 while (true)
                 {
                     Console.Write("Do you want to continue? 1 - Yes, 2 - No : ");
@@ -40,7 +42,7 @@ namespace ReadToDo
                         Console.WriteLine("Good bye!");
                         break;
                     }
-                    
+
                 };
             }
             catch (Exception ex)
@@ -51,8 +53,18 @@ namespace ReadToDo
             }
         }
 
-        public static void GetFiles(string fileDirectory)
+        private static void PrintToDoFiles(List<string> files)
         {
+            foreach (string file in files)
+            {
+                Console.WriteLine(file);
+            }
+        }
+
+        public static List<string> GetFiles(string fileDirectory)
+        {
+            List<string> todoFiles = new List<string>();
+
             try
             {
                 string[] files = Directory.GetFiles(fileDirectory, "*.js", SearchOption.AllDirectories);
@@ -70,7 +82,7 @@ namespace ReadToDo
 
                             if (content.Contains(TODO))
                             {
-                                Console.WriteLine(file);
+                                todoFiles.Add(file);
                                 break;
                             }
                         }
@@ -93,6 +105,9 @@ namespace ReadToDo
             {
                 throw ex;
             }
+
+            return todoFiles;
+
         }
     }
 }
