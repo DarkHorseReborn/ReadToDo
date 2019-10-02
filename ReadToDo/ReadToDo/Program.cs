@@ -4,39 +4,94 @@ using System.Text;
 
 namespace ReadToDo
 {
-    class Program
+    public class Program
     {
         const string TODO = "TODO";
 
         static void Main(string[] args)
         {
-            Console.Write("Enter your directory:");
-            string fileDirectory = Console.ReadLine();
-            GetFiles(fileDirectory);
+            ReadFilePath();
         }
 
-        private static void GetFiles(string fileDirectory)
+        private static void ReadFilePath()
         {
-            string[] files = Directory.GetFiles(fileDirectory, "*.js", SearchOption.AllDirectories);
-
-            foreach (string file in files)
+            try
             {
-                using (FileStream fileStream = File.OpenRead(file))
+                Console.Write("Enter your directory :");
+                string fileDirectory = Console.ReadLine();
+                GetFiles(fileDirectory);
+                
+                while (true)
                 {
-                    byte[] fileContents = new byte[fileStream.Length];
-                    UTF8Encoding decoding = new UTF8Encoding(true);
-
-                    while (fileStream.Read(fileContents, 0, fileContents.Length) > 0)
+                    Console.Write("Do you want to continue? 1 - Yes, 2 - No : ");
+                    string option = Console.ReadLine();
+                    if (!option.Equals("1") && !option.Equals("2"))
                     {
-                        string content = decoding.GetString(fileContents);
+                        Console.WriteLine("Invalid option! Please try again!");
+                        continue;
+                    }
+                    else if (option.Equals("1"))
+                    {
+                        ReadFilePath();
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Good bye!");
+                        break;
+                    }
+                    
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Please try again!");
+                ReadFilePath();
+            }
+        }
 
-                        if (content.Contains(TODO))
+        public static void GetFiles(string fileDirectory)
+        {
+            try
+            {
+                string[] files = Directory.GetFiles(fileDirectory, "*.js", SearchOption.AllDirectories);
+
+                foreach (string file in files)
+                {
+                    using (FileStream fileStream = File.OpenRead(file))
+                    {
+                        byte[] fileContents = new byte[fileStream.Length];
+                        UTF8Encoding decoding = new UTF8Encoding(true);
+
+                        while (fileStream.Read(fileContents, 0, fileContents.Length) > 0)
                         {
-                            Console.WriteLine(file);
-                            break;
+                            string content = decoding.GetString(fileContents);
+
+                            if (content.Contains(TODO))
+                            {
+                                Console.WriteLine(file);
+                                break;
+                            }
                         }
                     }
                 }
+            }
+            catch (ArgumentException ex)
+            {
+                throw ex;
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                throw ex;
+            }
+            catch (PathTooLongException ex)
+            {
+                throw ex;
+            }
+            catch (IOException ex)
+            {
+                throw ex;
             }
         }
     }
