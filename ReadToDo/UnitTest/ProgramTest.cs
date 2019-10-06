@@ -72,16 +72,5 @@ namespace UnitTest
             // Act
             List<string> result = Program.GetFiles(filePath);
         }
-
-        [AssemblyCleanup]
-        public static void CleanUp()
-        {
-            string filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), TEST_FILES_FOLDER);
-
-            if (Directory.Exists(filePath))
-            {
-                Directory.Delete(filePath,true);
-            }
-        }
     }
 }
