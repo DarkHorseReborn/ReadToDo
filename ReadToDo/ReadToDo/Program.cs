@@ -67,7 +67,7 @@ namespace ReadToDo
 
             try
             {
-                string[] files = Directory.GetFiles(fileDirectory, "*.js", SearchOption.AllDirectories);
+                string[] files = Directory.GetFiles(fileDirectory, "*", SearchOption.AllDirectories);
 
                 foreach (string file in files)
                 {
