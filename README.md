@@ -1,7 +1,6 @@
 # ReadToDo
 
-ReadToDo project contains the source code that achieved functionality to print the files that contains "TODO" keyword.
-
+ReadToDo project contains the source code that achieved functionality to print the files that contains "TODO" keyword. Besides, ReadToDo project also included the UnitTest project.
 
 Step to achieved printing the files contains "TODO"
 1. Get directory input from user.
@@ -24,8 +23,9 @@ Install SDK from https://dotnet.microsoft.com/download/dotnet-core/2.2 and choos
 
 # Instruction
 1. Open the terminal/command line navigate to the folder that you downloaded/clone from github.
-2. To Run Application please follow this command: **dotnet ReadToDo.dll**
-3. To Run Unit Test please follow this command: **dotnet vstest UnitTest.dll**
+2. If you need test files you could get it from here https://github.com/DarkHorseReborn/ReadToDo/tree/master/TestFile
+3. To Run Application please follow this command: **dotnet ReadToDo.dll**
+4. To Run Unit Test please follow this command: **dotnet vstest UnitTest.dll**
    If you want to export the unit test report you could add **--logger:trx** after unit test command.
 
 
