@@ -80,7 +80,7 @@ namespace ReadToDo
                         {
                             string content = decoding.GetString(fileContents);
 
-                            if (content.Contains(TODO))
+                            if (content.ToUpperInvariant().Contains(TODO))
                             {
                                 todoFiles.Add(file);
                                 break;
