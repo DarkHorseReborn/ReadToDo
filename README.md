@@ -1,7 +1,6 @@
 # ReadToDo
 
-ReadToDo project contains the source code that achieved functionality to print the files that contains "TODO" keyword.
-
+ReadToDo project contains the source code that achieved functionality to print the files that contains "TODO" keyword. Besides, ReadToDo project also included the UnitTest project.
 
 Step to achieved printing the files contains "TODO"
 1. Get directory input from user.
